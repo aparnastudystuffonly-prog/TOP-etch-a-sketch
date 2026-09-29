@@ -37,7 +37,14 @@ button {
 button:hover {
   background: #444;
 }
+button.secondary {
+  background: #fff;
+  color: #222;
+}
 
+button.secondary:hover {
+  background: #e9e9e6;
+}
 #container {
   width: 400px;
   height: 400px;
