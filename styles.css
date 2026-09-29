@@ -46,17 +46,15 @@ button.secondary:hover {
   background: #e9e9e6;
 }
 #container {
-  width: 400px;
-  height: 400px;
-  aspect-ratio: 1/1;
+  width: 640px;
+  height: 640px;
   display: flex;
   flex-wrap: wrap;
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #222;
 }
 
 .square {
   outline: 1px solid #ddd;
-  background-color: #ddd;
-  flex: 0 0 calc(100% / 16);
+  background-color: #fff;
 }

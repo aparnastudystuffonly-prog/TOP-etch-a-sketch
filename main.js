@@ -6,6 +6,7 @@
 const MAX_SQUARES_PER_SIDE = 100;
 let currentSize = 16;
 
+// ---------- Build the page with DOM manipulation ----------
 const title = document.createElement("h1");
 title.textContent = "Etch-A-Sketch";
 
@@ -28,31 +29,40 @@ document.body.append(title, controls, container);
 
 // ---------- Grid creation ----------
 function createGrid(size) {
-  size = 16;
-  container.replaceChildren();
-  for (let i = 0; i < 16 * 16; i++) {
+  container.replaceChildren(); // remove all old squares
+
+  const squarePercent = 100 / size;
+
+  for (let i = 0; i < size * size; i++) {
     const square = document.createElement("div");
     square.classList.add("square");
+    square.style.flex = `0 0 ${squarePercent}%`;
     square.dataset.count = 0;
 
     square.addEventListener("mouseover", handleHover);
     container.appendChild(square);
   }
+
+  currentSize = size;
 }
+
 function handleHover(e) {
   const square = e.target;
+
   let count = Number(square.dataset.count);
   if (count < 10) {
-    count++;
+    count += 1;
     square.dataset.count = count;
   }
 
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
+
   square.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${count / 10})`;
 }
 
+// ---------- Buttons ----------
 newGridBtn.addEventListener("click", () => {
   const input = prompt(
     `Squares per side (1-${MAX_SQUARES_PER_SIDE}):`,
@@ -70,4 +80,5 @@ newGridBtn.addEventListener("click", () => {
 });
 
 clearBtn.addEventListener("click", () => createGrid(currentSize));
+
 createGrid(currentSize);
